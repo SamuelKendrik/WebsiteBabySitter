@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Babysitter</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            text-align: center;
+            background-image: url('Background.gif');
+            background-size: cover;
+            background-position: center;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+            align-items: center;
+        }
+        .container {
+            background: rgba(255, 255, 255, 0.8);
+            padding: 20px;
+            border-radius: 10px;
+            width: 80%;
+            max-width: 600px;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+            margin-top: 20px;
+            text-align: left;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        header {
+        background: #ffcccb;  /* Light pink background color */
+        padding: 20px;
+        font-size: 24px;
+        width: 100%;  /* Make the header stretch full width */
+        box-sizing: border-box;  /* Include padding in the element's total width */
+        margin: 0;  /* Ensure no margin on top or bottom */
+        }   
+        .header-buttons {
+            display: flex;
+            gap: 10px;
+        }
+        .header-buttons button {
+            background-color: #ff7f7f;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+        .header-buttons button:hover {
+            opacity: 0.9;
+            transform: scale(1.05);
+        }
+        .input-group {
+            margin-bottom: 20px;
+            width: 100%;
+        }
+        input, select, button {
+            padding: 12px;
+            margin: 8px 0;
+            width: 97%;
+            font-size: 16px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+        }
+        button {
+            background-color: #ff7f7f;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+        button:hover {
+            opacity: 0.9;
+            transform: scale(1.05);
+        }
+        .babysitter-profile {
+            margin-top: 20px;
+            padding: 15px;
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            display: block;
+            text-align: left;
+            width: 100%;
+        }
+        .babysitter-profile img {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            margin-bottom: 15px;
+        }
+        .babysitter-profile h3 {
+            margin: 0;
+        }
+        .babysitter-profile p {
+            font-size: 14px;
+            margin: 5px 0;
+        }
+        footer {
+            margin-top: 20px;
+            color: #aaa;
+            font-size: 14px;
+            position: absolute;
+            bottom: 20px;
+            width: 100%;
+            text-align: center;
+        }
+        /* Fix for the task suitability checkboxes */
+        .task-suitability {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+        }
+        .task-suitability label {
+            display: flex;
+            align-items: center;
+            margin-bottom: 8px;
+        }
+        .task-suitability input {
+            margin-right: 10px;
+        }
+        .logout-btn, .back-btn {
+            width: 200px;
+            padding: 10px;
+            border: none;
+            cursor: pointer;
+            border-radius: 5px;
+            margin: 10px;
+            font-size: 16px;
+        }
+        .logout-btn {
+            background-color: #f44336; /* Red for logout */
+            color: white;
+        }
+
+        .back-btn {
+            background-color: #2196F3; /* Blue for back */
+            color: white;
+        }
+    </style>
+    <script>
+        function addBabysitter() {
+            const name = document.getElementById("name").value;
+            const experience = document.getElementById("experience").value;
+            const ageSuitability = document.getElementById("ageSuitability").value;
+            const taskSuitability = Array.from(document.querySelectorAll('input[name="taskSuitability"]:checked')).map(el => el.value);
+            
+            if (!name || !experience || !ageSuitability || taskSuitability.length === 0) {
+                alert("Please fill in all fields!");
+                return;
+            }
+
+            const babysitterList = document.getElementById("babysitterList");
+            const newProfile = document.createElement("div");
+            newProfile.classList.add("babysitter-profile");
+            newProfile.innerHTML = `
+                <img src="babysitter-placeholder.jpg" alt="Babysitter Profile">
+                <div>
+                    <h3>${name}</h3>
+                    <p>${experience} years experience | ★★★★☆</p>
+                    <p>Age Suitability: ${ageSuitability}</p>
+                    <p>Task Suitability: ${taskSuitability.join(', ')}</p>
+                </div>
+            `;
+            babysitterList.appendChild(newProfile);
+
+            // Clear the form fields after submission
+            document.getElementById("name").value = "";
+            document.getElementById("experience").value = "";
+            document.getElementById("ageSuitability").value = "infant";
+            document.querySelectorAll('input[name="taskSuitability"]').forEach(input => input.checked = false);
+        }
+
+        function logout() {
+            alert("Logged out successfully!");
+            window.location.href = "Index.html";  // Redirect to login page
+        }
+
+        function goBack() {
+            window.location.href = "LoginPage.html";  // Redirect to the page where user selects Parent or Babysitter
+        }
+    </script>
+</head>
+<body>
+    <header>Babysitter Marketplace</header>
+
+    <!-- Logout and Back buttons at the top -->
+    <div>
+        <button class="logout-btn" onclick="logout()">Logout</button>
+        <button class="back-btn" onclick="goBack()">Back to Role Selection</button>
+    </div>
+
+    </header>
+
+    <div class="container">
+        <div class="input-group">
+            <input type="text" id="name" placeholder="Babysitter Name" required>
+        </div>
+        <div class="input-group">
+            <input type="number" id="experience" placeholder="Years of Experience" required>
+        </div>
+        <div class="input-group">
+            <label for="ageSuitability">Age Suitability:</label>
+            <select id="ageSuitability">
+                <option value="infant">Infants (0-2 years)</option>
+                <option value="toddler">Toddlers (2-5 years)</option>
+                <option value="child">Children (5+ years)</option>
+            </select>
+        </div>
+        <div class="input-group task-suitability">
+            <label for="taskSuitability">Task Suitability (Select multiple if needed):</label><br>
+            <label><input type="checkbox" name="taskSuitability" value="homework"> Homework Assistance</label><br>
+            <label><input type="checkbox" name="taskSuitability" value="meal"> Meal Preparation</label><br>
+            <label><input type="checkbox" name="taskSuitability" value="play"> Fun & Activities</label>
+        </div>
+        <div class="input-group">
+            <button onclick="addBabysitter()">Add Babysitter</button>
+        </div>
+    </div>
+
+    <section id="babysitterList">
+        <h2>Current Babysitters</h2>
+        <!-- New babysitters will be added here -->
+    </section>
+
+    <footer>&copy; 2025 Babysitter Marketplace. All rights reserved.</footer>
+</body>
+</html>

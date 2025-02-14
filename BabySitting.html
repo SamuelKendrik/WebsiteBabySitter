@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Babysitter Marketplace</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            text-align: center;
+            background-image: url('Background.gif');
+            background-size: cover;
+            background-position: center;
+            height: 100vh;
+        }
+        header {
+            background: #ffcccb;
+            padding: 20px;
+            font-size: 24px;
+        }
+        section {
+            padding: 20px;
+            background: rgba(255, 255, 255, 0.8); /* Light transparent background for readability */
+            border-radius: 10px;
+            max-width: 900px;
+            margin: 20px auto;
+        }
+        .babysitters, .choice { display: flex; justify-content: center; flex-wrap: wrap; }
+        .profile {
+            border: 1px solid #ddd;
+            padding: 10px;
+            margin: 10px;
+            width: 250px;
+            text-align: center;
+            cursor: pointer;
+            background: white;
+            border-radius: 10px;
+        }
+        .profile img {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+        }
+        .book-btn {
+            background: #ff7f7f;
+            color: white;
+            padding: 10px;
+            border: none;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+        select, input {
+            padding: 10px;
+            margin: 10px;
+        }
+
+        /* Styling for the buttons */
+        .logout-btn, .back-btn {
+            width: 200px;
+            padding: 10px;
+            border: none;
+            cursor: pointer;
+            border-radius: 5px;
+            margin: 10px;
+            font-size: 16px;
+        }
+
+        .logout-btn {
+            background-color: #f44336; /* Red for logout */
+            color: white;
+        }
+
+        .back-btn {
+            background-color: #2196F3; /* Blue for back */
+            color: white;
+        }
+
+    </style>
+    <script>
+        function filterBabysitters() {
+            let ageGroup = document.getElementById("ageGroup").value;
+            let task = document.getElementById("task").value;
+            let profiles = document.getElementsByClassName("profile");
+            
+            for (let profile of profiles) {
+                let ageSuitability = profile.getAttribute("data-age");
+                let taskSuitability = profile.getAttribute("data-task");
+                
+                if ((ageGroup === "all" || ageSuitability.includes(ageGroup)) &&
+                    (task === "all" || taskSuitability.includes(task))) {
+                    profile.style.display = "block";
+                } else {
+                    profile.style.display = "none";
+                }
+            }
+        }
+
+        function logout() {
+            alert("Logged out successfully!");
+            window.location.href = "LoginPage";  // Redirect to login page
+        }
+
+        function goBack() {
+            window.location.href = "Index.html";  // Redirect to the page where user selects Parent or Babysitter
+        }
+    </script>
+</head>
+<body>
+    <header>Babysitter Marketplace</header>
+
+    <!-- Logout and Back buttons at the top -->
+    <div>
+        <button class="logout-btn" onclick="logout()">Logout</button>
+        <button class="back-btn" onclick="goBack()">Back to Role Selection</button>
+    </div>
+
+    <section>
+        <h2>Choose Your Babysitter</h2>
+        <label for="ageGroup">Select Age Group:</label>
+        <select id="ageGroup" onchange="filterBabysitters()">
+            <option value="all">All Ages</option>
+            <option value="infant">Infants (0-2 years)</option>
+            <option value="toddler">Toddlers (2-5 years)</option>
+            <option value="child">Children (5+ years)</option>
+        </select>
+        <label for="task">Select Task:</label>
+        <select id="task" onchange="filterBabysitters()">
+            <option value="all">All Tasks</option>
+            <option value="homework">Homework Assistance</option>
+            <option value="meal">Meal Preparation</option>
+            <option value="play">Fun & Activities</option>
+        </select>
+        <div class="babysitters">
+            <div class="profile" data-age="infant,toddler" data-task="meal,play">
+                <img src="babysitter1.jpg" alt="Babysitter 1">
+                <h3>Anna</h3>
+                <p>5 years experience | ★★★★★</p>
+                <p>Age Suitability: Infant, Toddler</p>
+                <p>Task Suitability: Meal Preparation, Fun & Activities</p>
+                <button class="book-btn">Book Now</button>
+            </div>
+            <div class="profile" data-age="child" data-task="homework,play">
+                <img src="babysitter2.jpg" alt="Babysitter 2">
+                <h3>John</h3>
+                <p>3 years experience | ★★★★☆</p>
+                <p>Age Suitability: Child</p>
+                <p>Task Suitability: Homework Assistance, Fun & Activities</p>
+                <button class="book-btn">Book Now</button>
+            </div>
+            <div class="profile" data-age="infant,toddler" data-task="meal,play">
+                <img src="babysitter3.jpg" alt="Babysitter 3">
+                <h3>Sophie</h3>
+                <p>4 years experience | ★★★★☆</p>
+                <p>Age Suitability: Infant, Toddler</p>
+                <p>Task Suitability: Meal Preparation, Fun & Activities</p>
+                <button class="book-btn">Book Now</button>
+            </div>
+            <div class="profile" data-age="child" data-task="homework,play">
+                <img src="babysitter4.jpg" alt="Babysitter 4">
+                <h3>David</h3>
+                <p>2 years experience | ★★★☆☆</p>
+                <p>Age Suitability: Child</p>
+                <p>Task Suitability: Homework Assistance, Fun & Activities</p>
+                <button class="book-btn">Book Now</button>
+            </div>
+            <div class="profile" data-age="infant,toddler" data-task="meal,play">
+                <img src="babysitter5.jpg" alt="Babysitter 5">
+                <h3>Emma</h3>
+                <p>6 years experience | ★★★★★</p>
+                <p>Age Suitability: Infant, Toddler</p>
+                <p>Task Suitability: Meal Preparation, Fun & Activities</p>
+                <button class="book-btn">Book Now</button>
+            </div>
+            <div class="profile" data-age="child" data-task="homework,play">
+                <img src="babysitter6.jpg" alt="Babysitter 6">
+                <h3>James</h3>
+                <p>5 years experience | ★★★★★</p>
+                <p>Age Suitability: Child</p>
+                <p>Task Suitability: Homework Assistance, Fun & Activities</p>
+                <button class="book-btn">Book Now</button>
+            </div>
+        </div>
+    </section>
+</body>
+</html>

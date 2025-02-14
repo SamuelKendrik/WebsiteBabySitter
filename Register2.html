@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registrasi Form</title>
+    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Quicksand', sans-serif;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+            overflow: hidden;
+            background: url('Background.gif') center/cover fixed; 
+            animation: moveBackground 20s linear infinite;
+        }
+
+        .register-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            width: 80%;
+            max-width: 400px;
+            background-color: rgba(255, 255, 255, 0.8);
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
+            margin-top: 50px;
+            margin-left: auto;
+            margin-right: auto;
+            animation: fadeInUp 0.8s ease-out forwards;
+        }
+
+        label {
+            width: 100%;
+            box-sizing: border-box;
+        }
+
+        input, select {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 10px;
+            box-sizing: border-box;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+
+        h2 {
+            text-align: center;
+            color: #333;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+            font-size: 2em;
+            margin-bottom: 10px;
+        }
+
+        button {
+            width: 48%; /* Adjusted button width */
+            padding: 10px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            color: #fff;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+            transition: background-color 0.3s;
+            background-color: #0400ff;
+        }
+
+        #register-btn {
+            background-color: #0400ff;
+        }
+
+        button:hover {
+            filter: brightness(90%);
+        }
+    </style>
+</head>
+<body>
+
+    <div class="register-container">
+        <h2>Registrasi</h2>
+        <form action="/your-register-endpoint" method="post" onsubmit="return goToYourFile()" id="register-form">
+
+            <label for="address">Alamat:</label>
+            <input type="text" id="address" name="address" required>
+
+            <label for="profilePic">Foto Profil:</label>
+            <input type="file" id="profilePic" name="profilePic" accept="image/*">
+
+            <label for="phoneNumber">Nomor Telepon:</label>
+            <input type="tel" id="phoneNumber" name="phoneNumber" pattern="[0-9]{1,}" required>
+
+            <label for="password">Kata Sandi:</label>
+            <input type="password" id="password" name="password" required>
+
+            <label for="confirmPassword">Konfirmasi Kata Sandi:</label>
+            <input type="password" id="confirmPassword" name="confirmPassword" required>
+
+            <div style="display: flex; justify-content: space-between; margin-top: 10px;">
+                <button type="button" class="back" onclick="goBack()">Back</button>
+                <button type="submit" class="next" id="register-btn">Register</button>
+            </div>
+        </form>     
+    </div>
+
+    <script>
+        function validateForm() {
+            // Add your form validation logic here
+            return true; // Return false if validation fails
+        }
+
+        function goBack() {
+            window.history.back();
+        }
+        
+        function goToYourFile() {
+            // Add your validation logic here
+            // If validation succeeds, navigate to the desired file
+            window.location.href = "LoginPage.html";
+            return false; // Prevent default form submission
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Safe & Reliable Babysitting Services</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            text-align: center;
+            background-image: url('background.gif');
+            background-size: cover;
+            background-position: center;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .container {
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 10px;
+            padding: 40px;
+            width: 80%;
+            max-width: 600px;
+            text-align: center;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+        }
+        header {
+            font-size: 28px;
+            font-weight: bold;
+            margin-bottom: 20px;
+            color: #ff4f5a;
+        }
+        h2 {
+            font-size: 20px;
+            color: #333;
+            margin-bottom: 20px;
+        }
+        .buttons-container {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+        }
+        .button-wrapper {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .button-wrapper img {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 3px solid #fff;
+            margin-bottom: 10px;
+        }
+        .choice-btn {
+            padding: 15px 30px;
+            border: none;
+            border-radius: 10px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            width: 140px;
+            display: inline-block;
+        }
+        .parent-btn {
+            background: #ff7f7f;
+            color: white;
+        }
+        .babysitter-btn {
+            background: #7fbf7f;
+            color: white;
+        }
+        .choice-btn:hover {
+            opacity: 0.9;
+            transform: scale(1.05);
+        }
+        footer {
+            margin-top: 20px;
+            color: #aaa;
+            font-size: 14px;
+        }
+    </style>
+    <script>
+        function choosePage(page) {
+            if (page === "parent") {
+                window.location.href = "BabySitting.html";  // Redirect to the Parent page
+            } else if (page === "babysitter") {
+                window.location.href = "AddBabySitter.html";  // Redirect to the Babysitter page
+            }
+        }
+    </script>
+</head>
+<body>
+    <div class="container">
+        <header>Safe & Reliable Babysitting Services</header>
+        <h2>Are you a Parent or Babysitter?</h2>
+        
+        <!-- Buttons container (side by side) -->
+        <div class="buttons-container">
+            <div class="button-wrapper">
+                <img src="images/Familly_Logo.jpg" alt="Parent Image" class="button-image">
+                <button class="choice-btn parent-btn" onclick="choosePage('parent')">I'm a Parent</button>
+            </div>
+            <div class="button-wrapper">
+                <img src="images/BabySitter_Logo.jpg" alt="Babysitter Image" class="button-image">
+                <button class="choice-btn babysitter-btn" onclick="choosePage('babysitter')">I'm a Babysitter</button>
+            </div>
+        </div>
+
+        <footer>&copy; 2025 Babysitter Marketplace. All rights reserved.</footer>
+    </div>
+</body>
+</html>

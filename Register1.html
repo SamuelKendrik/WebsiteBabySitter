@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registrasi Form</title>
+    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Quicksand', sans-serif;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+            overflow: hidden;
+            background: url('Background.gif') center/cover fixed; 
+            animation: moveBackground 20s linear infinite;
+        }
+
+        .register-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            width: 80%;
+            max-width: 400px;
+            background-color: rgba(255, 255, 255, 0.8);
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
+            margin-top: 50px;
+            margin-left: auto;
+            margin-right: auto;
+            animation: fadeInUp 0.8s ease-out forwards;
+        }
+
+        label {
+            width: 100%;
+            box-sizing: border-box;
+        }
+
+        input, select {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 10px;
+            box-sizing: border-box;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+
+        h2 {
+            text-align: center;
+            color: #333;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+            font-size: 2em;
+            margin-bottom: 10px;
+        }
+
+        button {
+            width: 100%;
+            padding: 10px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            color: #ffffff;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+            transition: background-color 0.3s;
+            background-color: #0400ff;
+        }
+
+        button:hover {
+            filter: brightness(90%);
+        }
+    </style>
+</head>
+<body>
+
+    <div class="register-container">
+        <h2>Registrasi</h2>
+        <form action="/your-register-endpoint" method="post" onsubmit="return goToYourFile()">
+            <label for="firstName">Nama Depan:</label>
+            <input type="text" id="firstName" name="firstName" required>
+
+            <label for="lastName">Nama Belakang:</label>
+            <input type="text" id="lastName" name="lastName" required>
+
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email" pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$" required>
+
+            <label for="dob">Tanggal Lahir:</label>
+            <input type="date" id="dob" name="dob" required>
+
+            <label for="gender">Jenis Kelamin:</label>
+            <select id="gender" name="gender" required>
+                <option value="">Pilih Jenis Kelamin</option>
+                <option value="male">Laki-Laki</option>
+                <option value="female">Perempuan</option>
+                <option value="Croissant">Croissant</option>
+            </select>
+            
+            <div style="display: flex; justify-content: space-between; margin-top: 10px;">
+                <button type="button" class="back" onclick="goBack()">Back</button>
+                <div style="width: 10px;"></div> <!-- Add a small space between buttons -->
+                <button type="submit" class="next" id="nextBtn">Next</button>
+            </div>
+        </form>
+    </div>
+    <script>
+        function validateForm() {
+            var firstName = document.getElementById("firstName").value;
+            var lastName = document.getElementById("lastName").value;
+            var email = document.getElementById("email").value;
+            var dob = document.getElementById("dob").value;
+            var gender = document.getElementById("gender").value;
+
+            if (firstName === "" || lastName === "" || email === "" || dob === "" || gender === "") {
+                alert("Please fill in all the required fields.");
+                return false;
+            }
+
+            return true;
+        }
+
+        function goToYourFile() {
+            // Add your validation logic here
+            // If validation succeeds, navigate to the desired file
+            window.location.href = "Register2.html";
+            return false; // Prevent default form submission
+        }
+
+        function goBack() {
+            window.history.back();
+        }
+    </script>
+</body>
+</html>
